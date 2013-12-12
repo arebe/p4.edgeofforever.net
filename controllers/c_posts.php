@@ -26,7 +26,8 @@ class posts_controller extends base_controller{
 	$_POST['created'] = Time::now();
 	$_POST['modified'] = Time::now();
 
-	// Insert post content -- insert function sanitizes data
+	// Insert post content -- first sanitize!
+	$_POST = DB::instance(DB_NAME)->sanitize($_POST);
 	DB::instance(DB_NAME)->insert('posts', $_POST);
 	Router::redirect("/posts");
   }
@@ -152,7 +153,8 @@ class posts_controller extends base_controller{
 	// Timestamp for creation and mod
 	$_POST['created'] = Time::now();
 
-	// Insert post content -- insert function sanitizes data
+	// Insert post content -- firsst sanitize the data!
+	$_POST = DB::instance(DB_NAME)->sanitize($_POST);
 	DB::instance(DB_NAME)->insert('comments', $_POST);
 	Router::redirect("/posts/view/".$post_id);
   }
