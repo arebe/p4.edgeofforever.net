@@ -5,11 +5,12 @@ class users_controller extends base_controller {
         parent::__construct();
     } 
 
-    public function signup() {
+    public function signup($error = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
+			$this->template->content->error = $error;
 
         # Render template
             echo $this->template;
@@ -17,6 +18,18 @@ class users_controller extends base_controller {
     }
 
     public function p_signup() {
+	  // check for empty fields
+	  if(empty($_POST['email']) || empty($_POST['password'])):
+		Router::redirect("/users/signup/blank");
+	  endif;
+	  // check for duplicate email in db
+	  $q = "SELECT user_id
+		FROM users
+		WHERE email = '".$_POST['email']."'";
+	  $user_id = DB::instance(DB_NAME)->select_field($q);
+	  if($user_id):
+		Router::redirect("/users/signup/duplicate");
+	  endif;
 	  $_POST['created'] = Time::now();
 	  $_POST['modified'] = Time::now();
 	  $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);

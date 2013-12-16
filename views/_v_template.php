@@ -7,9 +7,10 @@
 	<!-- Common CSS/JSS -->
     <link rel="stylesheet" href="/css/normalize.css" type="text/css">
     <link rel="stylesheet" href="/css/app.css" type="text/css">
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-					
+			
 	<!-- Controller Specific JS/CSS -->
 	<?php if (isset($client_files_head)) echo $client_files_head; ?>
 	
@@ -39,9 +40,14 @@
 	</ul>
 </nav>
 <br></br>
+
 	<?php if (isset($content)) echo $content; ?>
 
 	<?php if (isset($client_files_body)) echo $client_files_body; ?>
+
+	<!-- run javascript after page has loaded -->
+	<script src="/js/main.js"></script>		
+
 </body>
 <footer>
 	<small>&copy; Copyright 2013 Edge of Forever Studios</small>
