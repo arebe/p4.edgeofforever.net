@@ -1,11 +1,7 @@
 /** css for main.js features **/
 
 /* v_users_signup validation */
-#first_name_error, #last_name_error, #email_error, #password_error {
+#first_name_error, #last_name_error, #email_error, #password_error, #photo_url_error{
 	color: red;
-	display: none;
-}
-
-#submit_button{
 	display: none;
 }

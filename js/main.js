@@ -37,10 +37,15 @@ $('input[name=password]').focusout(function(){
 	$('#password_error').css('display', password_check ? 'none' : 'block');
 });
 
-// display submit button if all fields check out ok
-$('#submit_button').css('display', first_name_check && last_name_check && email_check && password_check ? 'none' : 'block');
+// photo url validation
+$('textarea[name=photo_url]').focusout(function(){
+	var photo_url=$(this).val();
+	// check if this is a valid url
+	$('#photo_url_error').css('display', validateURL(photo_url) ? 'none' : 'block');
+});
 
 
+/** helper functions **/
 function check_name(name){
 	if (name.length > 0 && name.length <= 30){
 		return true;
@@ -59,3 +64,10 @@ function validatePassword(password) {
     var re = /^\S{5,}$/;
     return re.test(password);
 } 
+
+function validateURL(url){
+	// check for URL formatting
+	var re = new RegExp("^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|localhost|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$");
+           
+	return re.test(url);
+}

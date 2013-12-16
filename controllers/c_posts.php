@@ -9,16 +9,21 @@ class posts_controller extends base_controller{
   }
 
 
-  public function add(){
+  public function add($error = NULL){
 	if(!$this->user){
 	  die("Members only. <a href='/users/login'>Log in.</a>");
 	  }
 	$this->template->content = View::instance('v_posts_add');
 	$this->template->title = "New post";
+	$this->template->content->error = $error;
 	echo $this->template;
   }
 
   public function p_add(){
+	// check for empty fields
+	if(empty($_POST['content']) || empty($_POST['photo_url'])):
+	  Router::redirect("/posts/add/blank");
+	endif;
 	// Associate this post with this user
 	$_POST['user_id'] = $this->user->user_id;
 
@@ -29,7 +34,12 @@ class posts_controller extends base_controller{
 	// Insert post content -- first sanitize!
 	$_POST = DB::instance(DB_NAME)->sanitize($_POST);
 	DB::instance(DB_NAME)->insert('posts', $_POST);
-	Router::redirect("/posts");
+	// find post id for re-direct
+	$q = "SELECT
+			MAX(post_id) 
+		FROM posts";
+	$post_id = 	DB::instance(DB_NAME)->select_field($q);
+	Router::redirect("/posts/view/".$post_id);
   }
 
   public function index(){
@@ -146,6 +156,10 @@ class posts_controller extends base_controller{
   }
 
   public function p_comment($post_id){
+	// check for empty fields
+    if(empty($_POST['content'])):
+		Router::redirect("/posts/view/".$post_id);
+	endif;
 	// Associate this comment with this post & user
 	$_POST['post_id'] = $post_id;
 	$_POST['user_id'] = $this->user->user_id;
