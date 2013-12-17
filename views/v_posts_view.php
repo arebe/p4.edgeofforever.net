@@ -31,14 +31,18 @@
 		<?php endif; ?>
 		</div>
 	<?php endforeach; ?>
-<!-- Add a new comment -->
-<?php if($user): ?>
+	<!-- Add a new comment -->
+	<?php if($user): ?>
 	<form method='POST' action='/posts/p_comment/<?=$post['post_id']?>'>
 		<label for='content'>Comment:</label><br>
 	    <textarea name='content' id='content'></textarea>
 		<br><br>
 	    <input type='submit' value='Post comment'>
 	</form> 
-<?php endif; ?>
+	<?php endif; ?>
+	<!-- Display message if not logged in -->
+   <?php if(!$user): ?>
+		<div class='no_photo'>Log in to leave comments.</div>
+   <?php endif; ?>
 </div>
 </article>

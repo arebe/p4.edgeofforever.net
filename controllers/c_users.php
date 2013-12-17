@@ -30,12 +30,20 @@ class users_controller extends base_controller {
 	  if($user_id):
 		Router::redirect("/users/signup/duplicate");
 	  endif;
+	  // add user to db
 	  $_POST['created'] = Time::now();
 	  $_POST['modified'] = Time::now();
 	  $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 	  $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 	  $_POST['profile_pic'] = "/uploads/avatars/example.gif";
 	  $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+	  // automatically follow self
+	  $data = Array(
+			  "created" => Time::now(), 
+			  "user_id" => $user_id, 
+			  "user_id_followed" => $user_id
+			  );
+	  DB::instance(DB_NAME)->insert('users_users', $data);
 	  Router::redirect("/users/login");
     }
 
@@ -64,7 +72,7 @@ class users_controller extends base_controller {
 	  }
 	  else {
 		setcookie("token", $token, strtotime('+1 year'), '/');
-		Router::redirect("/");
+		Router::redirect("/posts/index");
 	  }
 	}
 	

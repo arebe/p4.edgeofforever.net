@@ -1,3 +1,8 @@
+<!-- Display message if there are no posts -->
+<?php if(count($posts) == 0): ?>
+	<div class='no_photo'>Follow other users to see their photos in your stream.</div>
+<?php endif; ?>
+
 <?php foreach($posts as $post): ?>
 	<article>
         <div class="posts_box">
