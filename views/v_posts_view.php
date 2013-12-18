@@ -35,7 +35,7 @@
 	<?php if($user): ?>
 	<form method='POST' action='/posts/p_comment/<?=$post['post_id']?>'>
 		<label for='content'>Comment:</label><br>
-	    <textarea name='content' id='content'></textarea>
+	    <textarea name='content' id='content' class='wide_text'></textarea>
 		<br><br>
 	    <input type='submit' value='Post comment'>
 	</form> 

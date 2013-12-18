@@ -104,6 +104,9 @@ class users_controller extends base_controller {
 	  }
 	  $this->template->content = View::instance('v_users_edit');
 	  $this->template->title = "Edit profile";
+	  $this->template->content->email = $this->user->email;
+	  $this->template->content->first_name = $this->user->first_name;
+	  $this->template->content->last_name = $this->user->last_name;
 	  echo $this->template;
 	}
 
@@ -115,5 +118,27 @@ class users_controller extends base_controller {
 	  DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
 	  Router::redirect('/users/profile/'.$this->user->user_id);
 	}
+
+	public function p_update(){
+	  // update first name, if one is entered
+	  if($_POST['first_name']):
+		$data = Array("first_name" => $_POST['first_name']);
+		DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
+	  endif;
+
+	  // update last name, if one is entered
+	  if($_POST['last_name']):
+		$data = Array("last_name" => $_POST['last_name']);
+		DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
+	  endif;
+
+	  // update password, if one is entered
+	  if($_POST['password']):
+		$data = Array("password" => $_POST['password']);
+		DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
+	  endif;
+
+	  Router::redirect('/users/profile/'.$this->user->user_id);
+    }
 
 } # eoc

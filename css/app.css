@@ -101,6 +101,15 @@ article{
 	color: grey;
 }
 
+.wide_text{
+	width: 80%;
+}
+
+.tall_text{
+	width: 80%;
+	height: 100px;
+}
+
 /* Landing page */
 
 h4.landing{
