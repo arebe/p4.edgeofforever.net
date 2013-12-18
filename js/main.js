@@ -37,13 +37,13 @@ $('input[name=password]').focusout(function(){
 	$('#password_error').css('display', password_check ? 'none' : 'block');
 });
 
+/** v_posts_add **/
 // photo url validation
 $('textarea[name=photo_url]').focusout(function(){
 	var photo_url=$(this).val();
 	// check if this is a valid url
 	$('#photo_url_error').css('display', validateURL(photo_url) ? 'none' : 'block');
 });
-
 
 /** helper functions **/
 function check_name(name){

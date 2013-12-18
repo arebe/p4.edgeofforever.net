@@ -27,7 +27,7 @@
 	  <li><a href='/posts'>Panostream</a></li>
 	  <!-- Menu for those who are logged in -->
 		<?php if($user): ?>
-			<li><a href='/users/profile'>My Profile</a></li>
+			<li><a href='/users/profile/<?=$user->user_id?>'>My Profile</a></li>
 			<li><a href='/posts/add'>Add a Post</a></li>
 			<li><a href='/posts/users'>List of Users</a></li>
 			<li><a href='/users/logout'>Log out</a></li>

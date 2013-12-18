@@ -6,6 +6,8 @@
 	<p><span class="new">New features</span> include:
 	<ul>
 		<li>User input validation and sanitization</li>
+		<li>Edit user profile</li>
+	    <li>Recent user posts appear in profile</li>
 	</ul>
 	</div>
 	</div>

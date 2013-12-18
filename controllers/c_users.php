@@ -87,15 +87,46 @@ class users_controller extends base_controller {
 		Router::redirect("/");
 	}
 	
-	public function profile($user_name = NULL){
+	public function profile($profile_user_id){
 	  if(!$this->user){
 		Router::redirect('/users/login');
 	  }
-	  
-	  $profile_pic = new Image(APP_PATH.$this->user->profile_pic);
+	  // query the db for this user
+	  $q = 'SELECT *
+			FROM users
+			WHERE user_id = '.$profile_user_id;
+	  $profile_user = DB::instance(DB_NAME)->select_row($q);
+	  $profile_pic = $profile_user['profile_pic'];
 	  $this->template->content = View::instance('v_users_profile');
-	  $this->template->title = "Profile of ".$this->user->first_name;
-	  echo $this->template;
+	  $this->template->content->first_name = $profile_user['first_name'];
+	  $this->template->content->last_name = $profile_user['last_name'];
+	  $this->template->content->profile_pic = $profile_pic;
+	  $this->template->title = "Profile of ".$profile_user['first_name'];
+
+	  // if this is the profile for the logged in user, show "edit profile" button
+	  if($this->user->user_id == $profile_user_id):
+		$this->template->content->edit_profile = 'display_button';
+	  else:
+		$this->template->content->edit_profile = 'no_button';
+	  endif;
+
+	  // query db for list of 5 recent posts by this user
+	  $q = 'SELECT 
+				post_id,
+			    content,
+				photo_url,
+				created,
+	            user_id
+	        FROM posts
+			WHERE user_id = '.$profile_user_id.'
+			ORDER BY created DESC
+			LIMIT 5';
+      // run query
+	  $posts = DB::instance(DB_NAME)->select_rows($q);
+      // pass data to view
+	  $this->template->content->posts = $posts;
+	  //	  	  echo print_r( $profile_pic);	  
+      echo $this->template;
 	}
 	
 	public function edit(){
@@ -134,6 +165,7 @@ class users_controller extends base_controller {
 
 	  // update password, if one is entered
 	  if($_POST['password']):
+		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 		$data = Array("password" => $_POST['password']);
 		DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
 	  endif;

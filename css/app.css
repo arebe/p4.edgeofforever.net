@@ -35,6 +35,7 @@ footer {
 	padding-top: 2px;
 	padding-bottom: 2px;
 	border-radius: 5px;
+	clear: both;
 }
 
 time{
@@ -166,6 +167,7 @@ div.posts_box p, h1, time, form{
 div.posts_thumbnail{
 	float: right;
 	margin: auto 1.3em auto;
+	padding: 10px;
 }
 
 /* posts_view page */
@@ -194,4 +196,34 @@ div.comment_box{
 	border: dotted #001A33  0.2px;
 	opacity:0.8;
 	filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+/* users_profile page */
+#profile_posts{
+	width: 30%;
+	min-width: 320px;
+	float: right;
+	position: relative;
+}
+
+div.profile_posts_box{
+	width: 320px;
+	height: 140px;
+	background-color:#2b2834;
+	border: dotted #001A33  0.2px;
+	opacity:0.8;
+	filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.profile_posts_thumbnail{
+	float: left;
+	padding: 10px;
+}
+
+form.display_button{
+	display: block;
+}
+
+form.no_button{
+	display: none;
 }
