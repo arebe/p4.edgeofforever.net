@@ -165,6 +165,7 @@ div.posts_box p, h1, time, form{
 }
 
 div.posts_thumbnail{
+	border: 0px;
 	float: right;
 	margin: auto 1.3em auto;
 	padding: 10px;

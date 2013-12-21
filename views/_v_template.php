@@ -18,9 +18,7 @@
 
 <body>	
 	<header>
-		<hgroup>
 		<a href="/"><h1>PanoBlog</h1></a>
-		</hgroup>
 	</header>
 <nav>
 	<ul>
@@ -38,7 +36,7 @@
 		<?php endif; ?>
 	</ul>
 </nav>
-<br></br>
+<br><br>
 
 	<?php if (isset($content)) echo $content; ?>
 
@@ -47,8 +45,9 @@
 	<!-- run javascript after page has loaded -->
 	<script src="/js/main.js"></script>		
 
-</body>
 <footer>
 	<small>&copy; Copyright 2013 Edge of Forever Studios</small>
 </footer>
+
+</body>
 </html>

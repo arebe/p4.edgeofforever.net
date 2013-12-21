@@ -8,7 +8,7 @@
         <div class="posts_box">
         <p>
         <div class="posts_thumbnail">
-        <img src='<?=$post['photo_url']?>' border=0 width=300 height=120>
+        <img src='<?=$post['photo_url']?>' width=300 height=120 alt='<?=$post['content']?>'>
         </div>
         <h1 class="posts_index"><span class="post_user"><?=$post['first_name']?> <?=$post['last_name']?></span> posted:</h1>
         <p><?=$post['content']?></p>
@@ -18,7 +18,7 @@
         <input type = 'submit' value = 'View post'>
         </form>
 
-        <time datetime="<?Time::display($post['created'],'Y-m-d G:i')?>">
+        <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
          <?=Time::display($post['created'])?>
         </time>
         </div>
