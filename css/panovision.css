@@ -1,0 +1,8 @@
+/* style sheets for the panovision app */
+
+.default_background{
+	background-image:url('../images/hixs.png');
+	height: 600px;
+	width: 900px;
+	margin: 0px auto;
+}

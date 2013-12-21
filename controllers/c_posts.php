@@ -3,9 +3,6 @@
 class posts_controller extends base_controller{
   public function __construct(){
 	parent::__construct();
-	/*	if(!$this->user){
-	  die("Members only. <a href='/users/login'>Log in.</a>");
-	  }*/
   }
 
 
@@ -126,6 +123,12 @@ class posts_controller extends base_controller{
   }
 
   public function view($post_id){
+	// load client files
+	$client_files_head = Array('/css/panovision.css');
+	$this->template->client_files_head = Utils::load_client_files($client_files_head);
+	$client_files_body = Array('/js/panovision.js');
+	$this->template->client_files_body = Utils::load_client_files($client_files_body);
+
 	// display a page with a single post
 	// linked from index (posts) page
 	$this->template->content = View::instance('v_posts_view');

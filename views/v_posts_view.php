@@ -2,6 +2,12 @@
 	<?php if($post['photo_url'] != NULL): ?>
 		<div class="pano_photo">
 			<a href='<?=$post['photo_url']?>'><img src='<?=$post['photo_url']?>' width='900' alt='<?=$post['content']?>' border=0></a>
+			<canvas id='canvas' width='900' height='600'>
+				<div id='no_canvas'>
+					Your browser does not seem to support HTML5 canvas :( <br/>
+					Download the <a href="http://www.mozilla.org/en-US/firefox/fx/">latest version of Firefox</a>.
+				</div>	
+			</canvas>
 		</div>
 	<?php else: ?>
 		<h3 class="no_photo">No photo for this post</h3>
