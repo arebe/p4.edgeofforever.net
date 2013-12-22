@@ -124,9 +124,12 @@ class posts_controller extends base_controller{
 
   public function view($post_id){
 	// load client files
-	$client_files_head = Array('/css/panovision.css');
+	$client_files_head = Array('/css/panovision.css',
+							   'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
 	$this->template->client_files_head = Utils::load_client_files($client_files_head);
-	$client_files_body = Array('/js/panovision.js');
+	$client_files_body = Array('/js/panovision.js',
+							   'http://code.jquery.com/jquery-1.9.1.js',
+							   'http://code.jquery.com/ui/1.10.3/jquery-ui.js');
 	$this->template->client_files_body = Utils::load_client_files($client_files_body);
 
 	// display a page with a single post
@@ -155,6 +158,8 @@ class posts_controller extends base_controller{
 	$this->template->content->post = $post;
 	$this->template->content->comments = $comments;
 	$this->template->content->user_id = $this->user->user_id;
+
+	$this->template->content->params = Array('photo_url' => $post['photo_url']);
 	echo $this->template;
   }
 
