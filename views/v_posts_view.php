@@ -13,10 +13,10 @@
 			</canvas>
 
 <p>
-<label for="amount">Hey a slider:</label>
-<input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+<label for="zoom">Hey a slider:</label>
+<input type="text" id="zoom" style="border:0; color:#f6931f; font-weight:bold;">
 </p>
-<div id="slider-range-max"></div>
+<div id="zoom_slider"></div>
 
 
 		</div>
