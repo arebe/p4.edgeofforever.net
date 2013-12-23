@@ -28,8 +28,10 @@ $(document).ready(function(){
 		drag_on = 0;
 		console.log("image width: " + pano_img.width);
 		// initialize image to display centered on canvas
-		start_x = (pano_img.width/2) - (canvas_width/2);
-		start_y = (pano_img.height/2) - (canvas_height/2);
+		/*start_x = (pano_img.width/2) - (canvas_width/2);
+		start_y = (pano_img.height/2) - (canvas_height/2);*/
+		start_x = 0;
+		start_y = 0;
 		pano_x = start_x;
 		pano_y = start_y;
 		context.drawImage(pano_img, pano_x, pano_y, pano_img.width, pano_img.height, 0, 0, pano_img.width, pano_img.height);
