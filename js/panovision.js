@@ -11,8 +11,6 @@ var pano_img = new Image();
 // interactions and display
 var pano_x;
 var pano_y;
-var toggle_pan;
-var drag_on;
 var start_x;
 var start_y;
 
@@ -24,12 +22,8 @@ $(document).ready(function(){
 	canvas = document.getElementById('canvas'),
 	context = canvas.getContext('2d');	
 	pano_img.onload = function(){
-		toggle_pan = 0;
-		drag_on = 0;
 		console.log("image width: " + pano_img.width);
-		// initialize image to display centered on canvas
-		/*start_x = (pano_img.width/2) - (canvas_width/2);
-		start_y = (pano_img.height/2) - (canvas_height/2);*/
+		pano_scale = 1;
 		start_x = 0;
 		start_y = 0;
 		pano_x = start_x;
@@ -94,32 +88,6 @@ function refresh_pan(){
 	pano_y = $("#y_pan_slider").slider("value");
 	draw_canvas();
 }
-
-
-// canvas interactions: dragging
-// this isn't working...trying other methodsz
-/*$("#canvas").mousedown(function(e){
-	if(toggle_pan == 1){
-		drag_on = 1;
-		start_x = e.clientX;
-		start_y = e.clientY;
-	}
-});
-
-$("#canvas").mousemove(function (e){
-	if(drag_on){
-		var delta_x = e.clientX - start_x;
-		var delta_y = e.clientY - start_y;
-		console.log("delta X: " + delta_x + " delta Y: " + delta_y);
-		pano_x += delta_x;
-		pano_y += delta_y;
-		draw_canvas();
-	}
-});
-
-$("#canvas").mouseup(function(e){
-	drag_on = 0;
-});*/
 
 
 function draw_canvas(){

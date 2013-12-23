@@ -28,7 +28,7 @@
 <div id="y_pan_slider"></div>
 </p>
 <br><br>
-<!-- scaled photo for reference -->
+<!-- photo for reference -->
 			<a href='<?=$post['photo_url']?>'><img src='<?=$post['photo_url']?>'
 			width='450' alt='<?=$post['content']?>' border=0></a>
 
