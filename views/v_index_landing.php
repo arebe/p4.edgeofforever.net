@@ -8,6 +8,8 @@
 		<li>User input validation and sanitization</li>
 		<li>Edit user profile</li>
 	    <li>Recent user posts appear in profile</li>
+		<li>User profiles "stalkable" by other users</li>
+	    <li>PanoVision post view, with zoom and pan</li>
 	</ul>
 	</div>
 	</div>
