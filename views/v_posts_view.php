@@ -1,8 +1,6 @@
 <article>
 	<?php if($post['photo_url'] != NULL): ?>
 		<div class="pano_photo">
-			<a href='<?=$post['photo_url']?>'><img src='<?=$post['photo_url']?>'
-			width='900' alt='<?=$post['content']?>' border=0></a>
 			<canvas id='canvas'>
 				<div id='no_canvas'>
 					Your browser does not seem to support HTML5 canvas :( <br/>
@@ -13,10 +11,26 @@
 			</canvas>
 
 <p>
-<label for="zoom">Hey a slider:</label>
-<input type="text" id="zoom" style="border:0; color:#f6931f; font-weight:bold;">
+<label for="zoom">Drag to zoom:</label>
+<input type="text" id="zoom" style="border:0; color:#f6931f; font-weight:bold; width: 50px">
 </p>
 <div id="zoom_slider"></div>
+
+<p>
+<label for="horiz">Horizontal pan:</label>
+<input type="text" id="horiz" style="border:0; color:#f6931f; font-weight:bold; width: 50px">
+<div id="x_pan_slider"></div>
+</p>
+
+<p>
+<label for="vert">Vertical pan:</label>
+<input type="text" id="vert" style="border:0; color:#f6931f; font-weight:bold; width: 50px">
+<div id="y_pan_slider"></div>
+</p>
+<br><br>
+<!-- scaled photo for reference -->
+			<a href='<?=$post['photo_url']?>'><img src='<?=$post['photo_url']?>'
+			width='900' alt='<?=$post['content']?>' border=0></a>
 
 
 		</div>
